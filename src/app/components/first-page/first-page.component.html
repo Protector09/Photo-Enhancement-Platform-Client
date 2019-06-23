@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Superresolution</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="login">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="first-page">Tab1 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="#">Tab2</a>
+        </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <div>
+        {{getUsername()}}
+      </div>
+      <a class="nav-link" href="login" (click)="logout()">Logout</a>
+    </form>
+
+  </div>
+</nav>
+<br><br>
+<div class="col-md-6 first-page-root">
+  <div align="center">
+    
+    <h4 align="center">Select the file</h4>
+    <h4 align="center">Select the processing mode</h4>
+    <h4 align="center">Get your file!</h4>
+
+  </div>
+
+  <br>
+  
+  <div class="form-container">
+
+        <input 
+          style="display:none"
+          type="file"
+          (change)="onFileChanged($event)"
+          accept="image/*" 
+          #file>
+
+        <button class="action-button" pButton (click)="file.click()">Select File</button>
+
+        <p-dropdown class="action-options" (click)="onChange()" [options]="possibleActions" [(ngModel)]="selectedAction"></p-dropdown>
+
+        <div *ngIf="isSRSelected" class="row-6">
+            <p> New Heigth:  
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                New Width:  </p>
+            
+          </div>
+        <div class="row-2">
+          <input [(ngModel)]="new_heigth" *ngIf="isSRSelected" type="text">
+          <input [(ngModel)]="new_width" *ngIf="isSRSelected" type="text">
+        </div>
+        <br>
+        <div *ngIf="isSRSelected" class="row-6">
+          <p> Factor:</p>  
+        </div>
+        <input [(ngModel)]="factor" *ngIf="isSRSelected" type="text">
+
+        
+        
+        <button class="action-button" pButton (click)="onProceed()"> Proceed </button>
+
+        <br>
+        <img [src]="imageToShow"
+          *ngIf="!isImageLoading; else noImageFound">
+        <ng-template #noImageFound>
+              <img height="100" width="100" src="../../../assets/loading.gif" alt="Fallbackimage">
+        </ng-template>
+         
+
+  </div>
+
+</div>

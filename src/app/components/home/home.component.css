@@ -1,0 +1,11 @@
+.upper_tabs{
+    position: relative;
+    align-content: center;
+}
+
+body .ui-tabview.ui-tabview-top .ui-tabview-nav /deep/{
+    margin-bottom: -1px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

@@ -1,0 +1,29 @@
+<div class='login-root-container'>
+  <h1 align="center" class="title">Image Enhancer</h1>
+    <form class="credentials-form"
+    name="form"
+    #f="ngForm">
+    <div class="login-box">
+      <h1 align="center">Login</h1>
+      <div class="textbox">
+        <input type="text"
+        name="username"
+               [(ngModel)]="credentials.username"
+               #username="ngModel"
+               placeholder="Username"
+               required>
+      </div>
+    
+      <div class="textbox">
+        <input type="password" placeholder="Password"
+        name="password"
+        [(ngModel)]="credentials.password"
+        #password="ngModel" required>
+      </div>
+    
+      <button (click)="login()" class="btn">Login</button>
+    </div>
+  </form>
+
+</div>
+ 
